@@ -2,13 +2,21 @@
   "name": "javascript-development-environment",
   "version": "1.0.0",
   "description": "JavaScript development environment Pluralsight course by Cory House",
-  "scripts": {},
+  "scripts": {
+    "prestart": "babel-node buildScripts/startMessage.js",
+    "start": "npm-run-all --parallel security-check open:src",
+    "open:src": "babel-node buildScripts/srcServer.js",
+    "security-check": "npm audit",
+    "share": "lt -h 'http://serverless.social' -p 3000"
+  },
   "author": "Cory House",
   "license": "MIT",
   "dependencies": {
+    "chokidar": "^3.4.0",
     "whatwg-fetch": "3.1.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.10.4",
     "babel-cli": "6.26.0",
     "babel-core": "6.26.3",
     "babel-loader": "8.1.0",
@@ -39,7 +47,7 @@
     "rimraf": "3.0.2",
     "style-loader": "1.2.1",
     "surge": "0.21.3",
-    "webpack": "4.43.0",
+    "webpack": "^4.43.0",
     "webpack-dev-middleware": "3.7.2",
     "webpack-hot-middleware": "2.25.0",
     "webpack-md5-hash": "0.0.6"
